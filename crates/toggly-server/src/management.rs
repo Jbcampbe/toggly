@@ -31,30 +31,30 @@ pub fn router(state: Arc<AppState>) -> Router {
         // Projects
         .route("/projects", post(create_project).get(list_projects))
         .route(
-            "/projects/{id}",
+            "/projects/:id",
             get(get_project).put(update_project).delete(delete_project),
         )
         // Environments
         .route(
-            "/projects/{project_id}/environments",
+            "/projects/:project_id/environments",
             post(create_environment).get(list_environments),
         )
         .route(
-            "/projects/{project_id}/environments/{env_id}",
+            "/projects/:project_id/environments/:env_id",
             delete(delete_environment),
         )
         // Flags
         .route(
-            "/projects/{project_id}/flags",
+            "/projects/:project_id/flags",
             post(create_flag).get(list_flags),
         )
         .route(
-            "/projects/{project_id}/flags/{key}",
+            "/projects/:project_id/flags/:key",
             get(get_flag).put(update_flag).delete(delete_flag),
         )
         // Flag state
         .route(
-            "/projects/{project_id}/flags/{key}/environments/{env_id}",
+            "/projects/:project_id/flags/:key/environments/:env_id",
             put(update_flag_state),
         )
         .route_layer(middleware::from_fn_with_state(state.clone(), admin_auth))

@@ -18,7 +18,7 @@ use crate::state::AppState;
 pub fn router(state: Arc<AppState>) -> Router {
     Router::new()
         .route("/flags", get(eval_all_flags))
-        .route("/flags/{key}", get(eval_single_flag))
+        .route("/flags/:key", get(eval_single_flag))
         .route_layer(middleware::from_fn_with_state(state.clone(), sdk_key_auth))
         .with_state(state)
 }
