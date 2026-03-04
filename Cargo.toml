@@ -1,0 +1,7 @@
+[workspace]
+resolver = "2"
+members = [
+    "crates/toggly-core",
+    "crates/toggly-server",
+    "crates/toggly-tui",
+]
